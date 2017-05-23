@@ -20,6 +20,7 @@ public class SpiderButton: UIView {
     public var eventButtons: [SpiderEventButton] = []
     
     fileprivate let button: UIButton = UIButton(type: .custom)
+    fileprivate let expandView: UIView = UIView(frame: .zero)
     fileprivate let backgroundView: UIView = UIView(frame: .zero)
     
     fileprivate var state: SpiderButtonState = .normal
@@ -60,11 +61,11 @@ public class SpiderButton: UIView {
     }
     
     fileprivate func setupBackgroundView() {
-        addSubview(backgroundView)
-        sendSubview(toBack: backgroundView)
+        addSubview(expandView)
+        sendSubview(toBack: expandView)
         
-        backgroundView.layer.cornerRadius = 8
-        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        expandView.layer.cornerRadius = 8
+        expandView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
     func convertPosition() -> CGPoint {
@@ -90,8 +91,8 @@ public class SpiderButton: UIView {
         eventButtons
             .enumerated()
             .forEach { index, eventButton in
-            backgroundView.addSubview(eventButton)
-            eventButton.delegate = self
+                expandView.addSubview(eventButton)
+                eventButton.delegate = self
         }
         
         do { // configure self and button frame
@@ -103,17 +104,17 @@ public class SpiderButton: UIView {
             // keep button position
             button.center = center
             
-            // backgroundView center equal button
-            backgroundView.center = button.center
-            backgroundView.frame.size = .zero
+            // expandView center equal button
+            expandView.center = button.center
+            expandView.frame.size = button.bounds.size
         }
         
         UIView.animate(
             withDuration: 1,
             animations:{
                 let edge: CGFloat = UIScreen.main.bounds.width * 0.8
-                self.backgroundView.frame.size = CGSize(width: edge, height: edge)
-                self.backgroundView.center = self.center
+                self.expandView.transform = CGAffineTransform(scaleX: edge / self.expandView.bounds.width, y: edge / self.expandView.bounds.height)
+                self.expandView.center = self.center
         })
         
     }
@@ -132,6 +133,10 @@ public class SpiderButton: UIView {
             
             // keep button position and size
             button.frame = bounds
+            
+            expandView.center = button.center
+            expandView.frame.size = button.frame.size
+            expandView.transform = CGAffineTransform.identity
         }
     }
     
@@ -179,7 +184,7 @@ public class SpiderButton: UIView {
         }
         
         let touchBorderAnimation = CABasicAnimation(keyPath: "position")
-        touchBorderAnimation.delegate = self
+//        touchBorderAnimation.delegate = self
         touchBorderAnimation.isRemovedOnCompletion = false
         touchBorderAnimation.fromValue = location as AnyObject
         touchBorderAnimation.toValue = destinationLocation as AnyObject
@@ -194,11 +199,22 @@ public class SpiderButton: UIView {
     }
 }
 
-extension SpiderButton: CAAnimationDelegate {
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+extension SpiderButton {
+    public override func willMove(toSuperview newSuperview: UIView?) {
+        guard let newSuperview = newSuperview else {
+            return
+        }
         
+        backgroundView.frame = newSuperview.bounds
     }
 }
+
+//extension SpiderButton: CAAnimationDelegate {
+//    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        
+//    }
+//}
+
 
 // MARK: - SpiderEventButtonDelegate
 extension SpiderButton: SpiderEventButtonDelegate {
