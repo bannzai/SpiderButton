@@ -44,7 +44,7 @@ public class SpiderButton: UIView {
             and: highlightedImage
         )
         setupPanGesture()
-        configureBackgroundView()
+        setupBackgroundView()
     }
     
     private func setupButton(
@@ -59,11 +59,11 @@ public class SpiderButton: UIView {
         button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
     
-    fileprivate func configureBackgroundView() {
-        insertSubview(backgroundView, belowSubview: button)
+    fileprivate func setupBackgroundView() {
+        addSubview(backgroundView)
+        sendSubview(toBack: backgroundView)
         
-        backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundView.isHidden = state == .normal
+        backgroundView.layer.cornerRadius = 8
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
@@ -87,12 +87,10 @@ public class SpiderButton: UIView {
     fileprivate func expand() {
         state = .expand
         
-        eventButtons.enumerated().forEach { index, eventButton in
+        eventButtons
+            .enumerated()
+            .forEach { index, eventButton in
             backgroundView.addSubview(eventButton)
-            
-            eventButton.frame = bounds
-            eventButton.transform = CGAffineTransform(translationX: 100, y: 100 * CGFloat(index))
-            
             eventButton.delegate = self
         }
         
@@ -100,13 +98,24 @@ public class SpiderButton: UIView {
             let center = self.center
             
             // expand self
-            frame = backgroundView.bounds
+            frame = superview!.bounds
             
             // keep button position
             button.center = center
+            
+            // backgroundView center equal button
+            backgroundView.center = button.center
+            backgroundView.frame.size = .zero
         }
         
-        configureBackgroundView()
+        UIView.animate(
+            withDuration: 1,
+            animations:{
+                let edge: CGFloat = UIScreen.main.bounds.width * 0.8
+                self.backgroundView.frame.size = CGSize(width: edge, height: edge)
+                self.backgroundView.center = self.center
+        })
+        
     }
     
     fileprivate func close() {
@@ -124,8 +133,6 @@ public class SpiderButton: UIView {
             // keep button position and size
             button.frame = bounds
         }
-        
-        configureBackgroundView()
     }
     
     private func setupPanGesture() {
@@ -145,70 +152,53 @@ public class SpiderButton: UIView {
         case .began:
             print("began")
         case .ended:
-            guard let superview = superview else {
-                fatalError("superview not found")
-            }
-            
-            let superviewSize = superview.bounds.size
-            let moveForYDistance = superviewSize.height * CGFloat(0.10)
-            
-            let touchBorderAdjustMargin: CGFloat = 10
-            let destinationLocation: CGPoint
-            if location.y < moveForYDistance {
-                destinationLocation = CGPoint(x: location.x, y: bounds.width/2 + touchBorderAdjustMargin)
-            } else if location.y > superviewSize.height - moveForYDistance {
-                destinationLocation = CGPoint(x: location.x, y: superviewSize.height - bounds.height / 2 - touchBorderAdjustMargin)
-            } else if location.x > superviewSize.width / 2 {
-                destinationLocation = CGPoint(x: superviewSize.width - (bounds.width / 2 + touchBorderAdjustMargin), y: location.y)
-            } else {
-                destinationLocation = CGPoint(x: bounds.width / 2 + touchBorderAdjustMargin, y: location.y)
-            }
-            
-            let touchBorderAnimation = CABasicAnimation(keyPath: "position")
-            touchBorderAnimation.delegate = self
-            touchBorderAnimation.isRemovedOnCompletion = false
-            touchBorderAnimation.fromValue = location as AnyObject
-            touchBorderAnimation.toValue = destinationLocation as AnyObject
-            touchBorderAnimation.duration = 0.3
-            touchBorderAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            self.layer.add(touchBorderAnimation, forKey: "touchBorder")
-            
-            CATransaction.begin()
-            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-            self.center = destinationLocation
-            CATransaction.commit()
-            
+            moveToScreenEdge(from: location)
         default:
             print("other: \(gesture.state.rawValue)")
         }
     }
+    
+    private func moveToScreenEdge(from location: CGPoint) {
+        guard let superview = superview else {
+            fatalError("superview not found")
+        }
+        
+        let superviewSize = superview.bounds.size
+        let moveForYDistance = superviewSize.height * CGFloat(0.10)
+        
+        let touchBorderAdjustMargin: CGFloat = 10
+        let destinationLocation: CGPoint
+        if location.y < moveForYDistance {
+            destinationLocation = CGPoint(x: location.x, y: bounds.width / 2 + touchBorderAdjustMargin)
+        } else if location.y > superviewSize.height - moveForYDistance {
+            destinationLocation = CGPoint(x: location.x, y: superviewSize.height - bounds.height / 2 - touchBorderAdjustMargin)
+        } else if location.x > superviewSize.width / 2 {
+            destinationLocation = CGPoint(x: superviewSize.width - (bounds.width / 2 + touchBorderAdjustMargin), y: location.y)
+        } else {
+            destinationLocation = CGPoint(x: bounds.width / 2 + touchBorderAdjustMargin, y: location.y)
+        }
+        
+        let touchBorderAnimation = CABasicAnimation(keyPath: "position")
+        touchBorderAnimation.delegate = self
+        touchBorderAnimation.isRemovedOnCompletion = false
+        touchBorderAnimation.fromValue = location as AnyObject
+        touchBorderAnimation.toValue = destinationLocation as AnyObject
+        touchBorderAnimation.duration = 0.3
+        touchBorderAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        layer.add(touchBorderAnimation, forKey: "touchBorder")
+        
+        CATransaction.begin()
+        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        center = destinationLocation
+        CATransaction.commit()
+    }
 }
 
 extension SpiderButton: CAAnimationDelegate {
-    public func animationDidStart(_ anim: CAAnimation) {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         
     }
 }
-
-// MARK: - override
-extension SpiderButton {
-    public override func willMove(toWindow newWindow: UIWindow?) {
-        guard let newWindow = newWindow else {
-            return
-        }
-        
-        backgroundView.frame = newWindow.bounds
-    }
-    
-    public override func willMove(toSuperview newSuperview: UIView?) {
-        guard let window = superview?.window else {
-            return
-        }
-        
-        backgroundView.frame = window.bounds
-    }
-}
-
 
 // MARK: - SpiderEventButtonDelegate
 extension SpiderButton: SpiderEventButtonDelegate {
