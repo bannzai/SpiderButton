@@ -12,28 +12,41 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let edge: CGFloat = 48
-        let spiderButton = SpiderButton(
-            image: #imageLiteral(resourceName: "add"),
-            highlightedImage: nil,
-            origin: CGPoint(x: UIScreen.main.bounds.midX - edge / 2,y: UIScreen.main.bounds.midY - edge / 2),
-            edge: edge
-            )!
-        spiderButton.eventButtons = [
-            SpiderEventButton(image: #imageLiteral(resourceName: "fb"), highlightedImage: nil, edge: edge)!,
-            SpiderEventButton(image: #imageLiteral(resourceName: "gh"), highlightedImage: nil, edge: edge)!,
-            SpiderEventButton(image: #imageLiteral(resourceName: "tw"), highlightedImage: nil, edge: edge)!,
-            SpiderEventButton(image: #imageLiteral(resourceName: "in"), highlightedImage: nil, edge: edge)!,
-            SpiderEventButton(image: #imageLiteral(resourceName: "insta"), highlightedImage: nil, edge: edge)!
-            ]
-        view.addSubview(spiderButton)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    @IBAction func presentButtonPressed(_ sender: Any) {
+        present(ModalViewController(), animated: true, completion: nil)
     }
-
-
+    
+    
+    @IBAction func pushButtonPressed(_ sender: Any) {
+        navigationController?.pushViewController(SecondViewController(), animated: true)
+    }
+    
 }
 
+
+class ModalViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .green
+        let button = UIButton(frame: CGRect(x: 100, y: 200, width: 200, height: 100))
+        button.setTitle("close", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
+        view.addSubview(button)
+    }
+    
+    func close() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+class SecondViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .brown
+    }
+}

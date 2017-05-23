@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		584259E9BF7B5797D7B7D5D1 /* Pods_SpiderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 272BAD3E88EECE9CFC6393CA /* Pods_SpiderTests.framework */; };
+		9403F713962E8A038CB7B665 /* Pods_Spider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C16B5D0727582B86EE51A4 /* Pods_Spider.framework */; };
+		9621C8827EB6F4079188347E /* Pods_SpiderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9DC333135383E9C6BBD79A /* Pods_SpiderUITests.framework */; };
 		BAF4F4671ED3DFFB0054D102 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4661ED3DFFB0054D102 /* AppDelegate.swift */; };
 		BAF4F4691ED3DFFB0054D102 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4681ED3DFFB0054D102 /* ViewController.swift */; };
-		BAF4F46C1ED3DFFB0054D102 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF4F46A1ED3DFFB0054D102 /* Main.storyboard */; };
 		BAF4F46E1ED3DFFB0054D102 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4F46D1ED3DFFB0054D102 /* Assets.xcassets */; };
 		BAF4F4711ED3DFFB0054D102 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF4F46F1ED3DFFB0054D102 /* LaunchScreen.storyboard */; };
 		BAF4F47C1ED3DFFB0054D102 /* SpiderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F47B1ED3DFFB0054D102 /* SpiderTests.swift */; };
@@ -17,6 +19,8 @@
 		BAF4F4951ED3E0110054D102 /* SpiderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4941ED3E0110054D102 /* SpiderButton.swift */; };
 		BAF4F4971ED3E4930054D102 /* SpiderEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */; };
 		BAF4F4991ED3FF1A0054D102 /* SpiderWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */; };
+		BAF4F49C1ED403710054D102 /* Resource.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F49B1ED403710054D102 /* Resource.generated.swift */; };
+		BAF4F4A01ED404440054D102 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF4F49F1ED404440054D102 /* ViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18CB5C1420BB200C3810BD0C /* Pods-Spider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spider/Pods-Spider.debug.xcconfig"; sourceTree = "<group>"; };
+		258A0F3FA914548CBEF46658 /* Pods-SpiderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpiderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpiderUITests/Pods-SpiderUITests.release.xcconfig"; sourceTree = "<group>"; };
+		25C16B5D0727582B86EE51A4 /* Pods_Spider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		272BAD3E88EECE9CFC6393CA /* Pods_SpiderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpiderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A84E5B1DC613498420D0669 /* Pods-Spider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider/Pods-Spider.release.xcconfig"; sourceTree = "<group>"; };
+		5D7C62805D5F4CC6D3393523 /* Pods-SpiderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpiderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpiderTests/Pods-SpiderTests.release.xcconfig"; sourceTree = "<group>"; };
+		790C38F874CDBDDB7CDF9DC7 /* Pods-SpiderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpiderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpiderTests/Pods-SpiderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BAF4F4631ED3DFFB0054D102 /* Spider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4F4661ED3DFFB0054D102 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4F4681ED3DFFB0054D102 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BAF4F46B1ED3DFFB0054D102 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAF4F46D1ED3DFFB0054D102 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAF4F4701ED3DFFB0054D102 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAF4F4721ED3DFFB0054D102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +63,10 @@
 		BAF4F4941ED3E0110054D102 /* SpiderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderButton.swift; sourceTree = "<group>"; };
 		BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderEventButton.swift; sourceTree = "<group>"; };
 		BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderWindow.swift; sourceTree = "<group>"; };
+		BAF4F49B1ED403710054D102 /* Resource.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.generated.swift; sourceTree = "<group>"; };
+		BAF4F49F1ED404440054D102 /* ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
+		BB9DC333135383E9C6BBD79A /* Pods_SpiderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpiderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFEE01482627EE5A72FB063C /* Pods-SpiderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpiderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpiderUITests/Pods-SpiderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9403F713962E8A038CB7B665 /* Pods_Spider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				584259E9BF7B5797D7B7D5D1 /* Pods_SpiderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,19 +90,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9621C8827EB6F4079188347E /* Pods_SpiderUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481BA88BF4EC6EFF06E4AF75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25C16B5D0727582B86EE51A4 /* Pods_Spider.framework */,
+				272BAD3E88EECE9CFC6393CA /* Pods_SpiderTests.framework */,
+				BB9DC333135383E9C6BBD79A /* Pods_SpiderUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BAF4F45A1ED3DFFB0054D102 = {
 			isa = PBXGroup;
 			children = (
+				BAF4F49B1ED403710054D102 /* Resource.generated.swift */,
 				BAF4F4651ED3DFFB0054D102 /* Spider */,
 				BAF4F47A1ED3DFFB0054D102 /* SpiderTests */,
 				BAF4F4851ED3DFFC0054D102 /* SpiderUITests */,
 				BAF4F4641ED3DFFB0054D102 /* Products */,
+				F60B0A45E3C23D02A97F46C3 /* Pods */,
+				481BA88BF4EC6EFF06E4AF75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,10 +135,10 @@
 			children = (
 				BAF4F4661ED3DFFB0054D102 /* AppDelegate.swift */,
 				BAF4F4681ED3DFFB0054D102 /* ViewController.swift */,
+				BAF4F49F1ED404440054D102 /* ViewController.storyboard */,
 				BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */,
 				BAF4F4941ED3E0110054D102 /* SpiderButton.swift */,
 				BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */,
-				BAF4F46A1ED3DFFB0054D102 /* Main.storyboard */,
 				BAF4F46D1ED3DFFB0054D102 /* Assets.xcassets */,
 				BAF4F46F1ED3DFFB0054D102 /* LaunchScreen.storyboard */,
 				BAF4F4721ED3DFFB0054D102 /* Info.plist */,
@@ -134,6 +164,19 @@
 			path = SpiderUITests;
 			sourceTree = "<group>";
 		};
+		F60B0A45E3C23D02A97F46C3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				18CB5C1420BB200C3810BD0C /* Pods-Spider.debug.xcconfig */,
+				2A84E5B1DC613498420D0669 /* Pods-Spider.release.xcconfig */,
+				790C38F874CDBDDB7CDF9DC7 /* Pods-SpiderTests.debug.xcconfig */,
+				5D7C62805D5F4CC6D3393523 /* Pods-SpiderTests.release.xcconfig */,
+				FFEE01482627EE5A72FB063C /* Pods-SpiderUITests.debug.xcconfig */,
+				258A0F3FA914548CBEF46658 /* Pods-SpiderUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +184,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF4F48B1ED3DFFC0054D102 /* Build configuration list for PBXNativeTarget "Spider" */;
 			buildPhases = (
+				EBD401A5D26F0F4EA3D88765 /* [CP] Check Pods Manifest.lock */,
+				BAF4F49A1ED403380054D102 /* ShellScript */,
 				BAF4F45F1ED3DFFB0054D102 /* Sources */,
 				BAF4F4601ED3DFFB0054D102 /* Frameworks */,
 				BAF4F4611ED3DFFB0054D102 /* Resources */,
+				11353250CD7413D15A257E32 /* [CP] Embed Pods Frameworks */,
+				F3902146C4F499B8ECD3B683 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF4F48E1ED3DFFC0054D102 /* Build configuration list for PBXNativeTarget "SpiderTests" */;
 			buildPhases = (
+				7517271D2A28DBDFAF8C2D24 /* [CP] Check Pods Manifest.lock */,
 				BAF4F4731ED3DFFB0054D102 /* Sources */,
 				BAF4F4741ED3DFFB0054D102 /* Frameworks */,
 				BAF4F4751ED3DFFB0054D102 /* Resources */,
+				844E1FBB90D70C2A5AECCDF4 /* [CP] Embed Pods Frameworks */,
+				15374B5C8A762412C4778375 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,9 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF4F4911ED3DFFC0054D102 /* Build configuration list for PBXNativeTarget "SpiderUITests" */;
 			buildPhases = (
+				307ADCA812C95C10786E1454 /* [CP] Check Pods Manifest.lock */,
 				BAF4F47E1ED3DFFB0054D102 /* Sources */,
 				BAF4F47F1ED3DFFB0054D102 /* Frameworks */,
 				BAF4F4801ED3DFFB0054D102 /* Resources */,
+				E2320BF2FE0967C007100B1D /* [CP] Embed Pods Frameworks */,
+				CD8EC9C994FED6144684871E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,7 +296,7 @@
 			files = (
 				BAF4F4711ED3DFFB0054D102 /* LaunchScreen.storyboard in Resources */,
 				BAF4F46E1ED3DFFB0054D102 /* Assets.xcassets in Resources */,
-				BAF4F46C1ED3DFFB0054D102 /* Main.storyboard in Resources */,
+				BAF4F4A01ED404440054D102 /* ViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +316,157 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		11353250CD7413D15A257E32 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spider/Pods-Spider-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		15374B5C8A762412C4778375 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpiderTests/Pods-SpiderTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		307ADCA812C95C10786E1454 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7517271D2A28DBDFAF8C2D24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		844E1FBB90D70C2A5AECCDF4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpiderTests/Pods-SpiderTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAF4F49A1ED403380054D102 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/ResourceKit/ResourceKit\"\n";
+		};
+		CD8EC9C994FED6144684871E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpiderUITests/Pods-SpiderUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2320BF2FE0967C007100B1D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpiderUITests/Pods-SpiderUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBD401A5D26F0F4EA3D88765 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F3902146C4F499B8ECD3B683 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spider/Pods-Spider-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BAF4F45F1ED3DFFB0054D102 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,6 +474,7 @@
 			files = (
 				BAF4F4991ED3FF1A0054D102 /* SpiderWindow.swift in Sources */,
 				BAF4F4951ED3E0110054D102 /* SpiderButton.swift in Sources */,
+				BAF4F49C1ED403710054D102 /* Resource.generated.swift in Sources */,
 				BAF4F4691ED3DFFB0054D102 /* ViewController.swift in Sources */,
 				BAF4F4671ED3DFFB0054D102 /* AppDelegate.swift in Sources */,
 				BAF4F4971ED3E4930054D102 /* SpiderEventButton.swift in Sources */,
@@ -308,14 +513,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BAF4F46A1ED3DFFB0054D102 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BAF4F46B1ED3DFFB0054D102 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BAF4F46F1ED3DFFB0054D102 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -424,6 +621,7 @@
 		};
 		BAF4F48C1ED3DFFC0054D102 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18CB5C1420BB200C3810BD0C /* Pods-Spider.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Spider/Info.plist;
@@ -436,6 +634,7 @@
 		};
 		BAF4F48D1ED3DFFC0054D102 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A84E5B1DC613498420D0669 /* Pods-Spider.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Spider/Info.plist;
@@ -448,6 +647,7 @@
 		};
 		BAF4F48F1ED3DFFC0054D102 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 790C38F874CDBDDB7CDF9DC7 /* Pods-SpiderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -462,6 +662,7 @@
 		};
 		BAF4F4901ED3DFFC0054D102 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D7C62805D5F4CC6D3393523 /* Pods-SpiderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -476,6 +677,7 @@
 		};
 		BAF4F4921ED3DFFC0054D102 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFEE01482627EE5A72FB063C /* Pods-SpiderUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SpiderUITests/Info.plist;
@@ -489,6 +691,7 @@
 		};
 		BAF4F4931ED3DFFC0054D102 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 258A0F3FA914548CBEF46658 /* Pods-SpiderUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SpiderUITests/Info.plist;
@@ -519,6 +722,7 @@
 				BAF4F48D1ED3DFFC0054D102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BAF4F48E1ED3DFFC0054D102 /* Build configuration list for PBXNativeTarget "SpiderTests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +731,7 @@
 				BAF4F4901ED3DFFC0054D102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BAF4F4911ED3DFFC0054D102 /* Build configuration list for PBXNativeTarget "SpiderUITests" */ = {
 			isa = XCConfigurationList;
@@ -535,6 +740,7 @@
 				BAF4F4931ED3DFFC0054D102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,29 +7,18 @@
 //
 
 import UIKit
-
-public enum SpiderButtonArrangementType {
-    case expand
-    case oneline
-}
-
-public enum SpiderButtonPositionMode {
-    case fixed
-    case variable
-}
-
-fileprivate enum SpiderButtonState {
-    case normal
-    case expand
-}
-
 public class SpiderWindow: UIWindow {
     
-    let spiderButton: SpiderButton
+    var spiderButton: SpiderButton!
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     public init?(
         spiderButton: SpiderButton,
         frame: CGRect
         ) {
+        
         self.spiderButton = spiderButton
         super.init(frame: frame)
         
@@ -47,8 +36,8 @@ public class SpiderWindow: UIWindow {
         insertSubview(backgroundView, belowSubview: spiderButton)
         
         backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundView.isHidden = state == .normal
+//        backgroundView.isHidden = state == .normal
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
-
+    
 }

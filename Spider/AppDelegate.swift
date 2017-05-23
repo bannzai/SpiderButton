@@ -12,10 +12,41 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var spiderWindow: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let edge: CGFloat = 48
+        let spiderButton = SpiderButton(
+            image: #imageLiteral(resourceName: "add"),
+            highlightedImage: nil,
+            center: CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY),
+            edge: edge
+            )!
+        spiderButton.eventButtons = [
+            SpiderEventButton(image: #imageLiteral(resourceName: "fb"), highlightedImage: nil, edge: edge)!,
+            SpiderEventButton(image: #imageLiteral(resourceName: "gh"), highlightedImage: nil, edge: edge)!,
+            SpiderEventButton(image: #imageLiteral(resourceName: "tw"), highlightedImage: nil, edge: edge)!,
+            SpiderEventButton(image: #imageLiteral(resourceName: "link"), highlightedImage: nil, edge: edge)!,
+            SpiderEventButton(image: #imageLiteral(resourceName: "insta"), highlightedImage: nil, edge: edge)!
+            ]
+        
+        let rootViewController = ViewController.initialViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
+        navigationController.view.addSubview(spiderButton)
+        
+//        spiderWindow = SpiderWindow(spiderButton: spiderButton, frame: UIScreen.main.bounds)
+//        spiderWindow?.rootViewController = UIViewController()
+////        spiderWindow?.rootViewController?.view.backgroundColor = .clear
+////        spiderWindow?.backgroundColor = .clear
+//        spiderWindow?.makeKeyAndVisible()
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

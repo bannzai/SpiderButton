@@ -1,3 +1,4 @@
+
 //
 //  SpiderButton.swift
 //  Spider
@@ -8,26 +9,15 @@
 
 import UIKit
 
-public enum SpiderButtonArrangementType {
-    case expand
-    case oneline
-}
-
-public enum SpiderButtonPositionMode {
-    case fixed
-    case variable
-}
-
-fileprivate enum SpiderButtonState {
+public enum SpiderButtonState {
     case normal
     case expand
 }
 
+
 public class SpiderButton: UIView {
     
     public var eventButtons: [SpiderEventButton] = []
-    public var position: SpiderButtonPositionMode = .fixed
-    public var arrangementType: SpiderButtonArrangementType = .expand
     
     fileprivate let button: UIButton = UIButton(type: .custom)
     fileprivate let backgroundView: UIView = UIView(frame: .zero)
@@ -38,36 +28,28 @@ public class SpiderButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    public convenience init?(image: UIImage, origin: CGPoint, edge: Float) {
-//        self.init(image: image, origin, origin, edge: CGFloat(edge))
-//    }
-    
     public init?(
         image: UIImage,
         highlightedImage: UIImage?,
-        origin: CGPoint,
+        center: CGPoint,
         edge: CGFloat
         ) {
-        let frame = CGRect(origin: origin, size: CGSize(width: edge, height: edge))
+        let frame = CGRect(origin: .zero, size: CGSize(width: edge, height: edge))
         super.init(frame: frame)
         
-        setup()
-        configureButton(
+        self.center = center
+        
+        setupButton(
             with: image,
-            and: highlightedImage,
-            frame: CGRect(origin: origin, size: CGSize(width: edge, height: edge))
+            and: highlightedImage
         )
+        setupPanGesture()
         configureBackgroundView()
     }
     
-    private func setup() {
-        layer.cornerRadius = frame.size.width / 2
-    }
-    
-    private func configureButton(
+    private func setupButton(
         with image: UIImage,
-        and highlightedImage: UIImage?,
-        frame: CGRect
+        and highlightedImage: UIImage?
         ) {
         addSubview(button)
         
@@ -94,54 +76,117 @@ public class SpiderButton: UIView {
         }
     }
     func tapped() {
-        print(#function)
-        
-        frame = backgroundView.bounds
-        configureBackgroundView()
-        
         switch state {
         case .normal:
-            expand(with: arrangementType)
+            expand()
         case .expand:
             close()
         }
     }
     
-    fileprivate func expand(with arrangementType: SpiderButtonArrangementType) {
-        switch arrangementType {
-        case .expand:
-            eventButtons.enumerated().forEach { index, button in
-                backgroundView.addSubview(button)
-                
-                button.frame = bounds
-                button.transform = CGAffineTransform(translationX: -100, y: 100 * CGFloat(index))
-                
-                button.delegate = self
-            }
-        case .oneline:
-            fatalError()
+    fileprivate func expand() {
+        state = .expand
+        
+        eventButtons.enumerated().forEach { index, eventButton in
+            backgroundView.addSubview(eventButton)
+            
+            eventButton.frame = bounds
+            eventButton.transform = CGAffineTransform(translationX: 100, y: 100 * CGFloat(index))
+            
+            eventButton.delegate = self
         }
         
-        state = .expand
-    }
-    
-    private func configurePanGesture() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panned(_:)))
-        addGestureRecognizer(panGesture)
-    }
-    
-    func panned(_ gesture: UIPanGestureRecognizer) {
-        print(#function)
+        do { // configure self and button frame
+            let center = self.center
+            
+            // expand self
+            frame = backgroundView.bounds
+            
+            // keep button position
+            button.center = center
+        }
+        
+        configureBackgroundView()
     }
     
     fileprivate func close() {
+        state = .normal
+        
         eventButtons.forEach {
             $0.transform = CGAffineTransform.identity
             $0.removeFromSuperview()
         }
         
-        state = .normal
+        do { // configure self and button frame
+            // shrink self to button position
+            frame = button.frame
+            
+            // keep button position and size
+            button.frame = bounds
+        }
+        
         configureBackgroundView()
+    }
+    
+    private func setupPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panned(_:)))
+        addGestureRecognizer(panGesture)
+    }
+    
+    func panned(_ gesture: UIPanGestureRecognizer) {
+        guard state == .normal else {
+            return
+        }
+        
+        let location = gesture.location(in: superview)
+        center = location
+        
+        switch gesture.state {
+        case .began:
+            print("began")
+        case .ended:
+            guard let superview = superview else {
+                fatalError("superview not found")
+            }
+            
+            let superviewSize = superview.bounds.size
+            let moveForYDistance = superviewSize.height * CGFloat(0.10)
+            
+            let touchBorderAdjustMargin: CGFloat = 10
+            let destinationLocation: CGPoint
+            if location.y < moveForYDistance {
+                destinationLocation = CGPoint(x: location.x, y: bounds.width/2 + touchBorderAdjustMargin)
+            } else if location.y > superviewSize.height - moveForYDistance {
+                destinationLocation = CGPoint(x: location.x, y: superviewSize.height - bounds.height / 2 - touchBorderAdjustMargin)
+            } else if location.x > superviewSize.width / 2 {
+                destinationLocation = CGPoint(x: superviewSize.width - (bounds.width / 2 + touchBorderAdjustMargin), y: location.y)
+            } else {
+                destinationLocation = CGPoint(x: bounds.width / 2 + touchBorderAdjustMargin, y: location.y)
+            }
+            
+            let touchBorderAnimation = CABasicAnimation(keyPath: "position")
+            touchBorderAnimation.delegate = self
+            touchBorderAnimation.isRemovedOnCompletion = false
+            touchBorderAnimation.fromValue = location as AnyObject
+            touchBorderAnimation.toValue = destinationLocation as AnyObject
+            touchBorderAnimation.duration = 0.3
+            touchBorderAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            self.layer.add(touchBorderAnimation, forKey: "touchBorder")
+            
+            CATransaction.begin()
+            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+            self.center = destinationLocation
+            CATransaction.commit()
+            
+        default:
+            print("other: \(gesture.state.rawValue)")
+        }
+    }
+}
+
+extension SpiderButton: CAAnimationDelegate {
+    public func animationDidStart(_ anim: CAAnimation) {
+        
     }
 }
 
@@ -165,6 +210,7 @@ extension SpiderButton {
 }
 
 
+// MARK: - SpiderEventButtonDelegate
 extension SpiderButton: SpiderEventButtonDelegate {
     func eventButtonTapped(_ eventButton: SpiderEventButton) {
         close()
