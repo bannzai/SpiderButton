@@ -29,7 +29,8 @@ public class SpiderButton: UIView {
     public var position: SpiderButtonPositionMode = .fixed
     public var arrangementType: SpiderButtonArrangementType = .expand
     
-    fileprivate var button: UIButton!
+    fileprivate let button: UIButton = UIButton(type: .custom)
+    fileprivate let backgroundView: UIView = UIView(frame: .zero)
     
     fileprivate var state: SpiderButtonState = .normal
     
@@ -51,24 +52,52 @@ public class SpiderButton: UIView {
         super.init(frame: frame)
         
         setup()
-        configureButton(with: image, and: highlightedImage)
+        configureButton(
+            with: image,
+            and: highlightedImage,
+            frame: CGRect(origin: origin, size: CGSize(width: edge, height: edge))
+        )
+        configureBackgroundView()
     }
     
     private func setup() {
         layer.cornerRadius = frame.size.width / 2
     }
     
-    private func configureButton(with image: UIImage, and highlightedImage: UIImage?) {
-        button = UIButton(frame: bounds)
-        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    private func configureButton(
+        with image: UIImage,
+        and highlightedImage: UIImage?,
+        frame: CGRect
+        ) {
+        addSubview(button)
+        
+        button.frame = bounds
         button.setBackgroundImage(image, for: .normal)
         button.setBackgroundImage(highlightedImage, for: .highlighted)
         button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
-        addSubview(button)
     }
     
+    fileprivate func configureBackgroundView() {
+        insertSubview(backgroundView, belowSubview: button)
+        
+        backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundView.isHidden = state == .normal
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+    }
+    
+    func convertPosition() -> CGPoint {
+        switch state {
+        case .normal:
+            fatalError()
+        case .expand:
+            fatalError()
+        }
+    }
     func tapped() {
         print(#function)
+        
+        frame = backgroundView.bounds
+        configureBackgroundView()
         
         switch state {
         case .normal:
@@ -78,14 +107,14 @@ public class SpiderButton: UIView {
         }
     }
     
-    func expand(with arrangementType: SpiderButtonArrangementType) {
+    fileprivate func expand(with arrangementType: SpiderButtonArrangementType) {
         switch arrangementType {
         case .expand:
             eventButtons.enumerated().forEach { index, button in
-                superview?.addSubview(button)
+                backgroundView.addSubview(button)
                 
                 button.frame = bounds
-                button.transform = CGAffineTransform(translationX: 100, y: 100 * CGFloat(index))
+                button.transform = CGAffineTransform(translationX: -100, y: 100 * CGFloat(index))
                 
                 button.delegate = self
             }
@@ -112,10 +141,28 @@ public class SpiderButton: UIView {
         }
         
         state = .normal
+        configureBackgroundView()
     }
 }
 
-
+// MARK: - override
+extension SpiderButton {
+    public override func willMove(toWindow newWindow: UIWindow?) {
+        guard let newWindow = newWindow else {
+            return
+        }
+        
+        backgroundView.frame = newWindow.bounds
+    }
+    
+    public override func willMove(toSuperview newSuperview: UIView?) {
+        guard let window = superview?.window else {
+            return
+        }
+        
+        backgroundView.frame = window.bounds
+    }
+}
 
 
 extension SpiderButton: SpiderEventButtonDelegate {

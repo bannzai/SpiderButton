@@ -16,6 +16,7 @@
 		BAF4F4871ED3DFFC0054D102 /* SpiderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4861ED3DFFC0054D102 /* SpiderUITests.swift */; };
 		BAF4F4951ED3E0110054D102 /* SpiderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4941ED3E0110054D102 /* SpiderButton.swift */; };
 		BAF4F4971ED3E4930054D102 /* SpiderEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */; };
+		BAF4F4991ED3FF1A0054D102 /* SpiderWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		BAF4F4881ED3DFFC0054D102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAF4F4941ED3E0110054D102 /* SpiderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderButton.swift; sourceTree = "<group>"; };
 		BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderEventButton.swift; sourceTree = "<group>"; };
+		BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				BAF4F4661ED3DFFB0054D102 /* AppDelegate.swift */,
 				BAF4F4681ED3DFFB0054D102 /* ViewController.swift */,
+				BAF4F4981ED3FF1A0054D102 /* SpiderWindow.swift */,
 				BAF4F4941ED3E0110054D102 /* SpiderButton.swift */,
 				BAF4F4961ED3E4930054D102 /* SpiderEventButton.swift */,
 				BAF4F46A1ED3DFFB0054D102 /* Main.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF4F4991ED3FF1A0054D102 /* SpiderWindow.swift in Sources */,
 				BAF4F4951ED3E0110054D102 /* SpiderButton.swift in Sources */,
 				BAF4F4691ED3DFFB0054D102 /* ViewController.swift in Sources */,
 				BAF4F4671ED3DFFB0054D102 /* AppDelegate.swift in Sources */,

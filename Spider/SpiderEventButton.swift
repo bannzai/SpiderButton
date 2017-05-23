@@ -18,7 +18,7 @@ public class SpiderEventButton: UIView {
     var delegate: SpiderEventButtonDelegate?
     var eventClosure: EventClosure?
     
-    fileprivate var button: UIButton!
+    fileprivate let button: UIButton = UIButton(type: .custom)
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,12 +44,12 @@ public class SpiderEventButton: UIView {
     }
     
     private func configureButton(with image: UIImage, and highlightedImage: UIImage?) {
-        button = UIButton(frame: bounds)
-        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(button)
+        
+        button.frame = bounds
         button.setBackgroundImage(image, for: .normal)
         button.setBackgroundImage(highlightedImage, for: .highlighted)
         button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
-        addSubview(button)
     }
     
     func tapped() {
